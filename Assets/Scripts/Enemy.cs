@@ -10,6 +10,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject laser = null;
     [SerializeField] float laserSpeed = 10f;
+    [SerializeField] GameObject deathAnimation = null;
+    [SerializeField] float deathTimer = 1f;
+    [SerializeField] AudioClip deathSound = null;
+    [Range(0f, 1f)] [SerializeField] float deathVolume = 0.2f;
+    [SerializeField] AudioClip shootSound = null;
+    [Range(0f, 1f)] [SerializeField] float shootVolume = 0.2f;
 
 
     // Start is called before the first frame update
@@ -47,14 +53,26 @@ public class Enemy : MonoBehaviour
     {
         health -= damage.getDamage();
         damage.hit();
+        checkDeath();
+    }
+
+    private void checkDeath()
+    {
         if (health <= 0)
         {
             Destroy(gameObject);
+            GameObject death = Instantiate(deathAnimation, transform.position, transform.rotation);
+            Destroy(death, deathTimer);
+            AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathVolume);
         }
     }
+
     private void shoot()
     {
         GameObject laserShot = Instantiate(laser, transform.position, Quaternion.identity) as GameObject;
         laserShot.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -laserSpeed);
+        Destroy(laserShot, 1.5f);
+        AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootVolume);
+
     }
 }

@@ -115,6 +115,13 @@ MonoBehaviour:
   maxTimeBetweenShots: 3
   laser: {fileID: 7480877097755822314, guid: 76a76bf59e975f34a9ccec9b377c7291, type: 3}
   laserSpeed: 10
+  deathAnimation: {fileID: 8750073640608767820, guid: 46e820769889ce84dbaa103ec7a9b68b,
+    type: 3}
+  deathTimer: 1
+  deathSound: {fileID: 8300000, guid: ec1169af98b3e124ab7447e32434f544, type: 3}
+  deathVolume: 0.2
+  shootSound: {fileID: 8300000, guid: b8ba3efc527c52448bd4435805430ad9, type: 3}
+  shootVolume: 0.05
 --- !u!58 &1848153036203721693
 CircleCollider2D:
   m_ObjectHideFlags: 0

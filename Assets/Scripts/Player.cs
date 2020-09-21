@@ -10,11 +10,17 @@ public class Player : MonoBehaviour
     [Range(0,20)][SerializeField] float speed = 10f;
     [SerializeField] float padding = 1f;
     [SerializeField] int health = 100;
+    [SerializeField] GameObject deathAnimation = null;
+    [SerializeField] float deathTimer = 1f;
+    [SerializeField] AudioClip deathSound = null;
+    [Range(0f, 1f)] [SerializeField] float deathVolume = 0.2f;
 
     [Header("Laser configurations")]
     [SerializeField] GameObject laserPrefab = null;
     [SerializeField] float laserSpeed = 1f;
     [SerializeField] float laserFireTime = 0.1f;
+    [SerializeField] AudioClip shootSound = null;
+    [Range(0f, 1f)] [SerializeField] float shootVolume = 0.2f;
 
     Coroutine fireCoroutine;
 
@@ -56,6 +62,7 @@ public class Player : MonoBehaviour
             GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
             Destroy(laser, 1.5f);
+            AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootVolume);
             yield return new WaitForSeconds(laserFireTime);
         }
     }
@@ -104,9 +111,17 @@ public class Player : MonoBehaviour
     {
         health -= damage.getDamage();
         damage.hit();
+        checkDeath();
+    }
+
+    private void checkDeath()
+    {
         if (health <= 0)
         {
             Destroy(gameObject);
+            GameObject death = Instantiate(deathAnimation, transform.position, transform.rotation);
+            Destroy(death, deathTimer);
+            AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathVolume);
         }
     }
 }

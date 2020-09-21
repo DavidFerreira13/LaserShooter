@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6594795006633971699}
   - component: {fileID: 6594795006633971697}
   - component: {fileID: 7892738745835879143}
+  - component: {fileID: 244530788}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -99,10 +100,17 @@ MonoBehaviour:
   speed: 10
   padding: 0.5
   health: 1137
+  deathAnimation: {fileID: 8750073640608767820, guid: 46e820769889ce84dbaa103ec7a9b68b,
+    type: 3}
+  deathTimer: 1
+  deathSound: {fileID: 8300000, guid: ec1169af98b3e124ab7447e32434f544, type: 3}
+  deathVolume: 0.2
   laserPrefab: {fileID: 545252678461355452, guid: f58486199f6a48a4db5a126d9ba04920,
     type: 3}
   laserSpeed: 20
   laserFireTime: 0.1
+  shootSound: {fileID: 8300000, guid: 7f68a663c57799d4faac2a1c233a5b23, type: 3}
+  shootVolume: 0.05
 --- !u!60 &7892738745835879143
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -154,3 +162,29 @@ PolygonCollider2D:
       - {x: 0.058680236, y: -0.29759625}
       - {x: 0.06332904, y: -0.26348647}
       - {x: 0.36643466, y: -0.26348647}
+--- !u!61 &244530788
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594795006633971700}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 0.8}
+    newSize: {x: 0.8, y: 0.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.8}
+  m_EdgeRadius: 0
