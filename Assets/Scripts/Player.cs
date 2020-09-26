@@ -118,10 +118,16 @@ public class Player : MonoBehaviour
     {
         if (health <= 0)
         {
+            health = 0;
             Destroy(gameObject);
             GameObject death = Instantiate(deathAnimation, transform.position, transform.rotation);
             Destroy(death, deathTimer);
             AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathVolume);
+            FindObjectOfType<SceneLoader>().LoadGameOver();
         }
+    }
+    public int getHealth()
+    {
+        return health;
     }
 }

@@ -11,15 +11,14 @@ public class EnemySpawner : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         do
         {
-            StartCoroutine(spawnAllWaves());
+            yield return StartCoroutine(spawnAllWaves());
         } 
         while (loop);
     }
-
     private IEnumerator spawnEnemiesInWave(WaveConfiguration wave)
     {
         for (int enemyCount = 0; enemyCount < wave.getNumberOfEnemies(); enemyCount++)

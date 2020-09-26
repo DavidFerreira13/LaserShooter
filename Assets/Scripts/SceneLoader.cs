@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadGame()
     {
         SceneManager.LoadScene(1);
+        FindObjectOfType<GameSession>().resetGame();
     }
     public void LoadInstructions()
     {
@@ -18,8 +20,15 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadGameOver()
     {
+        StartCoroutine(LoadWithDelayBeforeDeath());
+    }
+
+    private IEnumerator LoadWithDelayBeforeDeath()
+    {
+        yield return new WaitForSeconds(1.8f);
         SceneManager.LoadScene(3);
     }
+
     public void Quit()
     {
         Application.Quit();
