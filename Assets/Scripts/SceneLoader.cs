@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
         FindObjectOfType<GameSession>().resetGame();
     }
     public void LoadInstructions()
@@ -26,7 +26,7 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator LoadWithDelayBeforeDeath()
     {
         yield return new WaitForSeconds(1.8f);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("GameOver");
     }
 
     public void Quit()
